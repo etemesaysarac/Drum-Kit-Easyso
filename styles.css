@@ -198,3 +198,51 @@ input[type="file"]{ padding:.45rem .6rem; background:#0f172a; color:#e2e8f0; bor
   .pad{ min-height:170px; }
   .pad img{ width:100px; }
 }
+
+/* iOS text autosize'ı kapat, tipografi patlamasını önle */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+/* Ekran yüksekliği: svh/dvh destekliyse onu kullan, yoksa var(--vh) fallback */
+.screen{
+  min-height: calc(100vh - var(--header-h));
+  padding-bottom: calc(var(--footer-h) + 1rem);
+}
+@supports (height: 100svh) {
+  .screen{ min-height: calc(100svh - var(--header-h)); }
+}
+@supports (height: 100dvh) {
+  .screen{ min-height: calc(100dvh - var(--header-h)); }
+}
+/* var(--vh) fallback (JS aşağıda set edecek) */
+.screen{ min-height: calc((100 * var(--vh, 1vh)) - var(--header-h)); }
+
+/* Sabit footer + iOS safe-area */
+.app-footer{
+  bottom: env(safe-area-inset-bottom, 0px);
+  padding-bottom: max(.8rem, env(safe-area-inset-bottom, 0px));
+}
+
+/* Kart/ızgara ve tipografi için mobil ayarları */
+@media (max-width: 480px){
+  /* Başlık ve slogan biraz küçülsün, satır arası toparlansın */
+  .brand h1, #title { font-size: clamp(1.6rem, 8vw, 2.4rem); line-height: 1.1; }
+  .brand .tagline { font-size: clamp(.85rem, 3.4vw, 1rem); }
+
+  /* Grid daha küçük kartlarla dizilsin */
+  .pad-grid{ display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+
+  /* Kart içindeki görsel boyu kontrol altında */
+  .pad-card img, .pad img, .card img { width: 100%; height: auto; max-height: 34vh; object-fit: contain; }
+
+  /* Tuş rozeti daha küçük */
+  .key-badge{ font-size: .9rem; min-width: 34px; height: 34px; }
+}
+
+/* Welcome/hero panelinin taşmasını engelle */
+.hero{
+  max-height: calc(100svh - var(--header-h) - var(--footer-h) - 6vh);
+  overflow: auto;
+}
+@supports (height: 100dvh){
+  .hero{ max-height: calc(100dvh - var(--header-h) - var(--footer-h) - 6vh); }
+}

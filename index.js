@@ -412,3 +412,16 @@ function resizeToDataURL(file, targetW, targetH, mode="cover"){
     img.onerror=reject; img.src=URL.createObjectURL(file);
   });
 }
+
+
+// --- Mobile vh fallback (iOS Safari 100vh problemi için) ---
+function syncVh(){
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+window.addEventListener('load', syncVh);
+window.addEventListener('resize', syncVh);
+window.addEventListener('orientationchange', () => setTimeout(syncVh, 250));
+
+// Mevcut safe-area ölçüm fonksiyonun varsa onunla birlikte kullanılır:
+// window.addEventListener('orientationchange', () => setTimeout(syncSafeAreas, 250));
