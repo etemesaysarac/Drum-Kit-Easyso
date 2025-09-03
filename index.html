@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Easyso Drum Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Arvo:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="images/easyso_logo.png" alt="Easyso logo" class="logo" />
+      <div class="titles">
+        <h1 class="app-title">Easyso Drum Kit</h1>
+        <p class="app-subtitle" data-i18n="subtitle">Interactive Rhythm Studio — Play • Learn • Groove</p>
+      </div>
+    </div>
+    <div class="clock" aria-live="polite">
+      <span id="date"></span>
+      <span id="time"></span>
+    </div>
+  </header>
+
+  <main>
+    <!-- PAGE 1 -->
+    <section id="welcome-screen" class="screen active with-cover cover-1" aria-labelledby="welcome-title">
+      <div class="hero">
+        <div class="hero-header">
+          <h2 id="welcome-title" class="hero-title" data-i18n="welcomeTitle">Ready to jam? 🎵</h2>
+
+          <!-- Language (required) -->
+          <div id="lang-group" class="lang-select" role="radiogroup" aria-label="Language">
+            <label><input type="radio" name="lang" value="en" /> English</label>
+            <label><input type="radio" name="lang" value="tr" /> Türkçe</label>
+            <label><input type="radio" name="lang" value="de" /> Deutsch</label>
+          </div>
+        </div>
+
+        <p class="lead" data-i18n="welcomeLead">
+          Click pads or use your keyboard (<strong>W A S D J K L</strong>). Hit Start and the stage is yours.
+        </p>
+
+        <!-- HOW TO -->
+        <article class="howto">
+          <h3 data-i18n="howtoTitle">How to play?</h3>
+          <div class="howto-grid">
+            <ol class="steps">
+              <li data-i18n="h1">Choose a language and press <strong>Start</strong> (required by browser audio policy).</li>
+              <li data-i18n="h2">Play by clicking pads or keys: <em>W</em>=Crash, <em>A</em>=Kick, <em>S</em>=Snare, <em>D</em>=Tom-1, <em>J</em>=Tom-2, <em>K</em>=Tom-3, <em>L</em>=Tom-4.</li>
+              <li data-i18n="h3">Open <strong>Customize</strong> to remap keys, change theme colors, or rearrange pads.</li>
+              <li data-i18n="h4">Turn on <strong>Free layout</strong> to drag pads anywhere on stage. Turn off to grid & drag-reorder.</li>
+              <li data-i18n="h5">Upload your own <strong>background image</strong> for Welcome or App screen; choose fit and overlay.</li>
+              <li data-i18n="h6">Press <strong>Exit</strong> to return here; all sounds stop.</li>
+            </ol>
+            <aside class="tips">
+              <h4 data-i18n="tips">Pro tips</h4>
+              <ul>
+                <li data-i18n="t1">Hold a key for fast rolls; combine with clicks for fills.</li>
+                <li data-i18n="t2">High-contrast key badges help on bright images.</li>
+                <li data-i18n="t3">Your setup is saved locally (no network).</li>
+              </ul>
+            </aside>
+          </div>
+        </article>
+
+        <div class="actions">
+          <button id="btn-start" class="btn btn-primary btn-pulse" aria-label="Start" disabled data-i18n="btnStart">Start</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section id="app-screen" class="screen with-cover cover-2" aria-label="Drum kit app screen">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button id="btn-customize" class="btn btn-ghost" aria-haspopup="dialog" data-i18n="btnCustomize">Customize</button>
+        </div>
+        <div class="toolbar-right">
+          <button id="btn-exit" class="btn btn-ghost" aria-label="Exit" data-i18n="btnExit">Exit</button>
+        </div>
+      </div>
+
+      <div id="pad-grid" class="pad-grid" role="list">
+        <button class="pad" role="listitem" data-id="crash" data-key="w" aria-label="Crash (W)">
+          <img src="images/crash.png" alt="" />
+          <span class="pad-key">W</span>
+          <small data-i18n="crash">Crash</small>
+        </button>
+        <button class="pad" role="listitem" data-id="kick" data-key="a" aria-label="Kick (A)">
+          <img src="images/kick.png" alt="" />
+          <span class="pad-key">A</span>
+          <small data-i18n="kick">Kick</small>
+        </button>
+        <button class="pad" role="listitem" data-id="snare" data-key="s" aria-label="Snare (S)">
+          <img src="images/snare.png" alt="" />
+          <span class="pad-key">S</span>
+          <small data-i18n="snare">Snare</small>
+        </button>
+        <button class="pad" role="listitem" data-id="tom1" data-key="d" aria-label="Tom 1 (D)">
+          <img src="images/tom1.png" alt="" />
+          <span class="pad-key">D</span>
+          <small data-i18n="tom1">Tom 1</small>
+        </button>
+        <button class="pad" role="listitem" data-id="tom2" data-key="j" aria-label="Tom 2 (J)">
+          <img src="images/tom2.png" alt="" />
+          <span class="pad-key">J</span>
+          <small data-i18n="tom2">Tom 2</small>
+        </button>
+        <button class="pad" role="listitem" data-id="tom3" data-key="k" aria-label="Tom 3 (K)">
+          <img src="images/tom3.png" alt="" />
+          <span class="pad-key">K</span>
+          <small data-i18n="tom3">Tom 3</small>
+        </button>
+        <button class="pad" role="listitem" data-id="tom4" data-key="l" aria-label="Tom 4 (L)">
+          <img src="images/tom4.png" alt="" />
+          <span class="pad-key">L</span>
+          <small data-i18n="tom4">Tom 4</small>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Easyso</span>
+      <span class="divider">•</span>
+      <span class="version">v4.1.1</span>
+      <span class="divider">•</span>
+      <span class="shortcuts" data-i18n="footerShortcuts">Shortcuts: W A S D J K L</span>
+      <span class="divider">•</span>
+      <a
+  id="repo-link"
+  href="https://github.com/etemesaysarac/Drum-Kit-Easyso"
+  target="_blank"
+  rel="noopener"
+  class="repo-link"
+  data-i18n="footerRepo"
+>
+  GitHub repo
+</a>
+    </div>
+  </footer>
+
+  <!-- Customize Modal (unchanged structure, texts via i18n) -->
+  <dialog id="customize-modal" class="modal">
+    <form method="dialog" class="modal-content" id="customize-form">
+      <header class="modal-header"><h3 data-i18n="customizeTitle">Customize</h3></header>
+      <section class="modal-body">
+        <fieldset class="grid2">
+          <legend data-i18n="legendKeys">Key mappings</legend>
+          <label><span data-i18n="crash">Crash</span><input type="text" name="crash" maxlength="1" inputmode="latin" placeholder="w" /></label>
+          <label><span data-i18n="kick">Kick</span><input type="text" name="kick" maxlength="1" inputmode="latin" placeholder="a" /></label>
+          <label><span data-i18n="snare">Snare</span><input type="text" name="snare" maxlength="1" inputmode="latin" placeholder="s" /></label>
+          <label><span data-i18n="tom1">Tom 1</span><input type="text" name="tom1" maxlength="1" inputmode="latin" placeholder="d" /></label>
+          <label><span data-i18n="tom2">Tom 2</span><input type="text" name="tom2" maxlength="1" inputmode="latin" placeholder="j" /></label>
+          <label><span data-i18n="tom3">Tom 3</span><input type="text" name="tom3" maxlength="1" inputmode="latin" placeholder="k" /></label>
+          <label><span data-i18n="tom4">Tom 4</span><input type="text" name="tom4" maxlength="1" inputmode="latin" placeholder="l" /></label>
+          <p class="hint" data-i18n="keysHint">* One character per instrument, all unique.</p>
+        </fieldset>
+
+        <fieldset class="grid3">
+          <legend data-i18n="legendColors">Theme colors</legend>
+          <label><span data-i18n="brandColor">Accent</span><input type="color" name="brand" /></label>
+          <label><span data-i18n="bg1">Background 1</span><input type="color" name="bg1" /></label>
+          <label><span data-i18n="bg2">Background 2</span><input type="color" name="bg2" /></label>
+        </fieldset>
+
+        <fieldset class="grid2">
+          <legend data-i18n="legendBackground">Background</legend>
+          <label><span data-i18n="applyTo">Apply to</span>
+            <select name="applyTo">
+              <option value="welcome" data-i18n="welcome">Welcome</option>
+              <option value="app" data-i18n="app">App</option>
+            </select>
+          </label>
+          <label><span data-i18n="fit">Fit</span>
+            <select name="coverSize">
+              <option value="cover">Cover</option>
+              <option value="contain">Contain</option>
+            </select>
+          </label>
+          <label class="full"><span data-i18n="upload">Upload image (JPG/PNG)</span><input type="file" name="bgImage" accept="image/png,image/jpeg" /></label>
+          <label class="full"><span data-i18n="overlay">Overlay darkness</span><input type="range" name="overlay" min="0" max="0.8" step="0.02" /></label>
+        </fieldset>
+
+        <fieldset>
+          <legend data-i18n="legendLayout">Layout</legend>
+          <label class="switch"><input type="checkbox" name="freeLayout" /><span data-i18n="freeLayout">Free layout mode (drag pads on stage)</span></label>
+          <p class="hint" data-i18n="layoutHint">Tip: When off, drag-reorder pads in grid.</p>
+        </fieldset>
+
+        <output id="customize-error" class="error" hidden></output>
+      </section>
+
+      <footer class="modal-actions">
+        <button value="cancel" class="btn" data-i18n="close">Close</button>
+        <button type="button" id="btn-reset" class="btn" data-i18n="reset">Reset</button>
+        <button type="submit" class="btn btn-primary" data-i18n="save">Save</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <script src="index.js"></script>
+</body>
+</html>
